@@ -39,14 +39,14 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_1 = {
         if (element === top) {
             var elsWithIds = top.querySelectorAll('*[id]');
             var usedIds    = {};
-
+            var specialK = JSON.stringify( elsWithIds ); // Want to see all the data
             for (var i = 0; i < elsWithIds.length; i++) {
                 var id = elsWithIds[i].getAttribute('id');
-                var nodename = JSON.stringify( elsWithIds[i] ); 
+               
                 if (usedIds[id] !== undefined) {
                     // F77 = "Failure of SC 4.1.1 due to duplicate values of type ID".
                     // Appropriate technique in HTML is H93.
-                    HTMLCS.addMessage(HTMLCS.ERROR, nodename, 'Duplicate id attribute value "' + id + '" found on the web page.', 'F77');
+                    HTMLCS.addMessage(HTMLCS.ERROR, specialK, 'Duplicate id attribute value "' + id + '" found on the web page.', 'F77');
                 } else {
                     usedIds[id] = true;
                 }
